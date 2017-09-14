@@ -1,0 +1,52 @@
+<!-- include --> 
+<? if ((typeof vm.message.text !== 'undefined') && (vm.message.text.length>0)) { ?>
+  <div class="p-3 mb-2 bg-<?= vm.message.bg ?> text-<?= vm.message.fg ?>"><?= vm.message.text ?></div>
+<? } ?>
+<form action="<?= vm.submitAction ?>" method="post">
+<?
+ for (var i=0; i<vm.file.urls.length; i++)
+ {
+?>
+<div class="row py-1">
+    <label for="long<?= i ?>" class="col-sm-1 py-1"><?= vm.file.urls[i].format ?></label>
+    <input type="hidden" class="invisible" name="format<?= i ?>" value="<?= vm.file.urls[i].format ?>" />
+    <div class="col-sm-4 col-lg-4">
+      <div class="input-group input-group-md">
+       <input type="text" id="long<?= i ?>" name="long<?= i ?>" class="form-control text-right" value="<?= vm.file.urls[i].long ?>" />
+       <span class="input-group-btn">
+        <button class="btn btn-primary btn-copy" type="button"
+           data-toggle="tooltip" data-placement="top" title="Copy to clipboard"
+           data-clipboard-target="#long<?= i ?>">COPY</button>
+       </span>
+      </div><!-- /input-group -->
+    </div>
+    <div class="col-sm-2 col-lg-2">
+    <? if ((vm.file.urls[i].short == null) || (vm.file.urls[i].short.length == 0 )) { ?>
+      <button type="submit" class="btn btn-primary" name="shorten" value="<?= i ?>">Make short URL</button>
+    <? } else { ?>
+      <div class="input-group input-group-md">
+       <input type="text" id="short<?= i ?>" class="form-control text-right" value="<?= vm.file.urls[i].short ?>" />
+       <span class="input-group-btn">
+        <button class="btn btn-primary btn-copy" type="button"
+           data-toggle="tooltip" data-placement="top" title="Copy to clipboard"
+           data-clipboard-target="#short<?= i ?>">COPY</button>
+        <button type="submit" class="btn btn-warning" name="forget" value="<?= i ?>"
+           data-toggle="tooltip" data-placement="top" title="Forget the shortened url"
+           aria-label="Close"
+           ><span aria-hidden="true">&times;</span></button>
+       </span>
+      </div><!-- /input-group -->
+    <? } ?>
+    </div>
+    <div class="col-sm-1 col-lg-1">
+    <? if ((vm.file.urls[i].short !== null) && (vm.file.urls[i].short.length !== 0 )) { ?>
+        <a class="btn btn-info" href="<?= vm.file.urls[i].info ?>" target="_blank" role="button">Clicks</a>
+    <? } ?>
+    </div>
+</div>
+<?
+ }
+?>
+</form>
+
+
