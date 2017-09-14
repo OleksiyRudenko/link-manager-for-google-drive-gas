@@ -13,5 +13,5 @@ More details on the application are at [this closely related project](https://gi
 Please, refer to the above for more details.
 
 ## Useful resources
-
-[OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
+ * [OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
+ * [google-apps-script-samples/import_export_development](https://github.com/google/google-apps-script-samples/tree/master/import_export_development)
