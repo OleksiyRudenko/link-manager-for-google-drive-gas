@@ -8,6 +8,6 @@ Refer to above for the initialization process.
 Normal development cycle requires `gapps upload` to update the script in
 Google environment.
 
-More details on project are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
+More details on the application are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
 
 Please, refer to the above for more details.
