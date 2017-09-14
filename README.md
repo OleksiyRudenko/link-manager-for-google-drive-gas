@@ -11,3 +11,7 @@ Google environment.
 More details on the application are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
 
 Please, refer to the above for more details.
+
+## Useful resources
+
+[OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
