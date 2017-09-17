@@ -1,4 +1,4 @@
-# Code bits for future use
+# Code bits
 
 ## Publish GND to web
 
