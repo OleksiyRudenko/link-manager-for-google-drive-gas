@@ -5,9 +5,21 @@ Repo created using [node-google-apps-script](https://github.com/danthareja/node-
 
 Refer to above for the initialization process.
 
+## Structure
+ * `manifest/` - web app manifest for CWS; see also [`manifest.md`](manifest.md)
+ * `src/` - web app code base
+ * [`codebits.md`](codebits.md) - project related code source bits
+ * `gapps.config.json` - `gapps` config; autocreated
+ * [`manifest.md`](manifest.md) - app manifest related docs
+ * `README.md` - this doc
+ * [`resources.md`](resources.md) - app development related useful resources
+ * [`workflow.md`](workflow.md) - app workflow docs
+
+## Development
 Normal development cycle requires `gapps upload` to update the script in
 Google environment.
 
+## Other
 More details on the application are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
 
 Please, refer to the above for more details.
