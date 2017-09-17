@@ -2,7 +2,8 @@
 
 ## OAuth
  * https://github.com/googlesamples/apps-script-oauth2
-  
+ * [OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
+
 ## Building app for GDrive
  * http://davethinkingaloud.blogspot.co.nz/2013/08/using-google-drive-as-entry-point-for.html
 
@@ -23,7 +24,8 @@
  * https://sites.google.com/site/scriptsexamples/custom-methods
 
 ## Samples
-https://github.com/googlesamples/apps-script-templates/tree/master/sheets-import OAuth etc.
+ * https://github.com/googlesamples/apps-script-templates/tree/master/sheets-import OAuth etc.
+ * [google-apps-script-samples/import_export_development](https://github.com/google/google-apps-script-samples/tree/master/import_export_development)     
 
 ## Misc
  * Tooltip: http://primercss.io/tooltips/ | jQuery
