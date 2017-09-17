@@ -1,5 +1,7 @@
 # Code bits
 
+__GND__ - Google Native Documents.
+
 ## Publish GND to web
 
 [API reference](https://developers.google.com/drive/v2/reference/revisions)
