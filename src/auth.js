@@ -4,19 +4,19 @@
 *Handles the installation for the user (execute script with no params and authorise through OAuth2 conversation
 */
 // Globals used in api constructs
-var AUTHORIZE_URL = 'https://accounts.google.com/o/oauth2/auth'; 
-var TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'; 
-var REDIRECT_URL= ScriptApp.getService().getUrl();  // url of *this* script exec
-var TOKENPROPERTYNAME = 'GOOGLE_OAUTH_TOKEN'; // access token valid until time expire or revoke by user
+var AUTHORIZE_URL       = 'https://accounts.google.com/o/oauth2/auth';
+var TOKEN_URL           = 'https://accounts.google.com/o/oauth2/token';
+var REDIRECT_URL        = ScriptApp.getService().getUrl();  // url of *this* script exec
+var TOKENPROPERTYNAME   = 'GOOGLE_OAUTH_TOKEN'; // access token valid until time expire or revoke by user
 var REFRESHPROPERTYNAME = 'GOOGLE_OAUTH_REFRESH'; //oauth2 refresh token valid until revoked by user
-var EXPIRYPROPERTYNAME = 'GOOGLE_OAUTH_EXPIRY' ; // expiry of oauth2 token time to do refresh!
+var EXPIRYPROPERTYNAME  = 'GOOGLE_OAUTH_EXPIRY' ; // expiry of oauth2 token time to do refresh!
 // OAUTH2 data from API project - needs to be replaced if new project is created or project generates new secret/id
-var CLIENT_ID = '940998321600-j97orlmmmrc59d1p1n2mni1dqtji7t01.apps.googleusercontent.com';
+var CLIENT_ID     = '940998321600-j97orlmmmrc59d1p1n2mni1dqtji7t01.apps.googleusercontent.com';
 var CLIENT_SECRET = 'u3z9_oX2CYp2PlmnPg5Gf9YM';
 // 
 var DRIVE_API_URL = 'https://www.googleapis.com/drive/v2';
 // maintain scope in step with changing application requirements
-var SCOPE = 'https://www.googleapis.com/auth/drive.install https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/urlshortener';
+var SCOPE         = 'https://www.googleapis.com/auth/drive.install https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/urlshortener';
 /* Main entry point
 * functions depend on code and state parameters
 * if state present ... app is installed
@@ -35,27 +35,26 @@ function auth(e) {
     if(e.parameters.state.action === 'create'){
       // called as a result of  selection from CREATE menu of Google Drive user interface actually creates a UIApp
       return createAction(e.parameters);
-    }
-    else {
+    } else {
       // called as a result of selection from right click on file menu of Google Drive user interface
      // HTMLToOutput=fileAction(state); 
      // return HtmlService.createHtmlOutput(HTMLToOutput)
      return fileAction(e.parameters);
     }
-  }
-  else if(e.parameters.code){//if we get "code" as a parameter in, then this is a callback from the install authorisation dance
-    Logger.log("Installation response");
-    getAndStoreAccessToken(e.parameters.code);  // installer
-    // var htmlT = htmlInit('index','installed','Link Manager for Google Drive installed');
-    HTMLToOutput = '<!DOCTYPE html><html><head><base target="_top"></head><body><h1>App is installed, you can close this window now or navigate to your <a href="https://drive.google.com">Google Drive</a>.</h1></body></html>';
-    // return htmlProduce(htmlT);
-  }
-  else {//we are starting from scratch or resetting (result of running the /exec of this script)
-    Logger.log("Installation request "+getURLForAuthorization());
-    // var htmlT = htmlInit('index','install','Install Link Manager for Google Drive');
-    // htmlT.vm.authUrl = getURLForAuthorization();
-    HTMLToOutput = "<!DOCTYPE html><html><head><base target=\"_top\"></head><body><h1>Install this App into your Google Drive!</h1><a href='"+getURLForAuthorization()+"'>click here to start</a></body></html>";
-    // return htmlProduce(htmlT);
+  } else {
+    if(e.parameters.code){//if we get "code" as a parameter in, then this is a callback from the install authorisation dance
+      Logger.log("Installation response");
+      getAndStoreAccessToken(e.parameters.code);  // installer
+      // var htmlT = htmlInit('index','installed','Link Manager for Google Drive installed');
+      HTMLToOutput = '<!DOCTYPE html><html><head><base target="_top"></head><body><h1>App is installed, you can close this window now or navigate to your <a href="https://drive.google.com">Google Drive</a>.</h1></body></html>';
+      // return htmlProduce(htmlT);
+    } else {//we are starting from scratch or resetting (result of running the /exec of this script)
+      Logger.log("Installation request " + getURLForAuthorization());
+      // var htmlT = htmlInit('index','install','Install Link Manager for Google Drive');
+      // htmlT.vm.authUrl = getURLForAuthorization();
+      HTMLToOutput = "<!DOCTYPE html><html><head><base target=\"_top\"></head><body><h1>Install this App into your Google Drive!</h1><a href='"+getURLForAuthorization()+"'>click here to start</a></body></html>";
+      // return htmlProduce(htmlT);
+    }
   }
   if (HTMLToOutput.length == 0)
     HTMLToOutput = "<!DOCTYPE html><html><head><base target=\"_top\"></head><body>Authorization cycle failed.</body></html>";
@@ -66,7 +65,7 @@ function auth(e) {
 */
 function getURLForAuthorization(){
   return AUTHORIZE_URL + '?'
-    + 'redirect_uri='+REDIRECT_URL
+    + 'redirect_uri=' + REDIRECT_URL
     + '&response_type=code'
     + '&client_id=' + CLIENT_ID
     + '&approval_prompt=force'
@@ -76,10 +75,10 @@ function getURLForAuthorization(){
 /*
 * second step of  OAUTH2 dance to exchange authorisation code for access key and refresh key
 */
-function getAndStoreAccessToken(code){
+function getAndStoreAccessToken(code) {
   var payload = "client_id=" + CLIENT_ID
     + "&redirect_uri=" + encodeURIComponent(REDIRECT_URL)
-    + "&client_secret="+CLIENT_SECRET
+    + "&client_secret=" + CLIENT_SECRET
     + "&code=" + encodeURIComponent(code)
     + "&scope=&grant_type=authorization_code";
   var parameters = {
@@ -100,7 +99,7 @@ function getAndStoreAccessToken(code){
 /* 
 * Handles the token refresh function of OAUTH2 using saved refresh token
 */
-function refreshAccessToken(){
+function refreshAccessToken() {
   var payload = 'client_id=' + CLIENT_ID
     + '&client_secret=' + CLIENT_SECRET
     + '&refresh_token=' + UserProperties.getProperty(REFRESHPROPERTYNAME)
