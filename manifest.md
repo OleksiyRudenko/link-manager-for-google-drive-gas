@@ -17,3 +17,6 @@ Extract from
     Currently, the domain name must be followed by at least 
     one character ("/"). 
 ```
+
+See [gd-linkman@github](https://github.com/OleksiyRudenko/gd-linkman/tree/master/dist-env)
+for imagery sources.
