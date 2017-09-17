@@ -35,7 +35,6 @@ function auth(e) {
     if(e.parameters.state.action === 'create'){
       // called as a result of  selection from CREATE menu of Google Drive user interface actually creates a UIApp
       return createAction(e.parameters);
-
     }
     else {
       // called as a result of selection from right click on file menu of Google Drive user interface
@@ -66,32 +65,30 @@ function auth(e) {
 * first step of OAUTH2 dance to get an authorisation code
 */
 function getURLForAuthorization(){
-  return AUTHORIZE_URL + '?' +
-    'redirect_uri='+REDIRECT_URL +
-      '&response_type=code' +
-        '&client_id='+CLIENT_ID +
-          '&approval_prompt=force'+
-            '&scope=' + encodeURIComponent(SCOPE) +
-              '&access_type=offline';
+  return AUTHORIZE_URL + '?'
+    + 'redirect_uri='+REDIRECT_URL
+    + '&response_type=code'
+    + '&client_id=' + CLIENT_ID
+    + '&approval_prompt=force'
+    + '&scope=' + encodeURIComponent(SCOPE)
+    + '&access_type=offline';
 }
 /*
 * second step of  OAUTH2 dance to exchange authorisation code for access key and refresh key
 */
 function getAndStoreAccessToken(code){
   var payload = "client_id=" + CLIENT_ID
-  payload = payload + "&redirect_uri="+encodeURIComponent(REDIRECT_URL)
-  payload = payload + "&client_secret="+CLIENT_SECRET
-  payload = payload + "&code="+encodeURIComponent(code)
-  payload = payload + "&scope=&grant_type=authorization_code"
-
+    + "&redirect_uri=" + encodeURIComponent(REDIRECT_URL)
+    + "&client_secret="+CLIENT_SECRET
+    + "&code=" + encodeURIComponent(code)
+    + "&scope=&grant_type=authorization_code";
   var parameters = {
     'method' : 'post',
     'contentType' : 'application/x-www-form-urlencoded',
     'payload' : payload
   };
-  
   var response = UrlFetchApp.fetch(TOKEN_URL,parameters).getContentText();
-   var tokenResponse = JSON.parse(response);
+  var tokenResponse = JSON.parse(response);
   // store the access token for later retrieval
   UserProperties.setProperty(TOKENPROPERTYNAME, tokenResponse.access_token);
   // store the refresh token for use when access token expires
@@ -99,37 +96,39 @@ function getAndStoreAccessToken(code){
   // store the expiry time to determine when access token expires (expiry is returned as seconds to go - converted to UTC time in msecs)
   UserProperties.setProperty(EXPIRYPROPERTYNAME,tokenResponse.expires_in * 1000 +new Date().getTime());
 }
+
 /* 
 * Handles the token refresh function of OAUTH2 using saved refresh token
 */
 function refreshAccessToken(){
-  var payload = 'client_id=' +CLIENT_ID+
-    '&client_secret='+CLIENT_SECRET+
-      '&refresh_token='+UserProperties.getProperty(REFRESHPROPERTYNAME)+
-        '&grant_type=refresh_token'
-      
-      var parameters = {
-        'method' : 'post',
-        'contentType' : 'application/x-www-form-urlencoded',
-        'payload' : payload
-      };
-  
+  var payload = 'client_id=' + CLIENT_ID
+    + '&client_secret=' + CLIENT_SECRET
+    + '&refresh_token=' + UserProperties.getProperty(REFRESHPROPERTYNAME)
+    + '&grant_type=refresh_token';
+  var parameters = {
+    'method' : 'post',
+    'contentType' : 'application/x-www-form-urlencoded',
+    'payload' : payload
+  };
   var response = UrlFetchApp.fetch(TOKEN_URL,parameters).getContentText();
-
   var tokenResponse = JSON.parse(response);
   // store the token for later retrival - note refresh token does not expire
   UserProperties.setProperty(TOKENPROPERTYNAME, tokenResponse.access_token);
-  UserProperties.setProperty(EXPIRYPROPERTYNAME,tokenResponse.expires_in * 1000 +new Date().getTime());
-  return tokenResponse.access_token
+  UserProperties.setProperty(EXPIRYPROPERTYNAME,tokenResponse.expires_in * 1000 + new Date().getTime());
+  return tokenResponse.access_token;
 }
-/*
+
+/**
 * Construct fetch options
 */
-
 function getUrlFetchOptions() {
-  return {'contentType' : 'application/json',
-          'headers' : {'Authorization' : 'Bearer ' + isTokenValid,
-                       'Accept' : 'application/json'}};
+  return {
+    'contentType' : 'application/json',
+    'headers' : {
+      'Authorization' : 'Bearer ' + isTokenValid,
+      'Accept' : 'application/json'
+    }
+  };
 }
 /*
 * CHECK IF STORED token is valid, if not use refresh token to get new one
@@ -140,10 +139,8 @@ function isTokenValid() {
   var storedRefresh = UserProperties.getProperty(REFRESHPROPERTYNAME);
   var expiry = UserProperties.getProperty(EXPIRYPROPERTYNAME);
   // if expired then refresh storedtoken
-  if (expiry<= now){
+  if (expiry <= now){
     storedToken = refreshAccessToken();
   }
-  
   return storedToken;
-
 }
