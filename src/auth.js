@@ -76,15 +76,16 @@ function getURLForAuthorization(){
 * second step of  OAUTH2 dance to exchange authorisation code for access key and refresh key
 */
 function getAndStoreAccessToken(code) {
-  var payload = "client_id=" + CLIENT_ID
-    + "&redirect_uri=" + encodeURIComponent(REDIRECT_URL)
-    + "&client_secret=" + CLIENT_SECRET
-    + "&code=" + encodeURIComponent(code)
-    + "&scope=&grant_type=authorization_code";
+  var payload =
+    'client_id=' + CLIENT_ID
+    + '&redirect_uri=' + encodeURIComponent(REDIRECT_URL)
+    + '&client_secret=' + CLIENT_SECRET
+    + '&code=' + encodeURIComponent(code)
+    + '&scope=&grant_type=authorization_code';
   var parameters = {
-    'method' : 'post',
+    'method'      : 'post',
     'contentType' : 'application/x-www-form-urlencoded',
-    'payload' : payload
+    'payload'     : payload
   };
   var response = UrlFetchApp.fetch(TOKEN_URL,parameters).getContentText();
   var tokenResponse = JSON.parse(response);
@@ -100,14 +101,15 @@ function getAndStoreAccessToken(code) {
 * Handles the token refresh function of OAUTH2 using saved refresh token
 */
 function refreshAccessToken() {
-  var payload = 'client_id=' + CLIENT_ID
+  var payload =
+    'client_id=' + CLIENT_ID
     + '&client_secret=' + CLIENT_SECRET
     + '&refresh_token=' + UserProperties.getProperty(REFRESHPROPERTYNAME)
     + '&grant_type=refresh_token';
   var parameters = {
-    'method' : 'post',
+    'method'      : 'post',
     'contentType' : 'application/x-www-form-urlencoded',
-    'payload' : payload
+    'payload'     : payload
   };
   var response = UrlFetchApp.fetch(TOKEN_URL,parameters).getContentText();
   var tokenResponse = JSON.parse(response);
@@ -125,7 +127,7 @@ function getUrlFetchOptions() {
     'contentType' : 'application/json',
     'headers' : {
       'Authorization' : 'Bearer ' + isTokenValid,
-      'Accept' : 'application/json'
+      'Accept'        : 'application/json'
     }
   };
 }
@@ -138,7 +140,7 @@ function isTokenValid() {
   var storedRefresh = UserProperties.getProperty(REFRESHPROPERTYNAME);
   var expiry = UserProperties.getProperty(EXPIRYPROPERTYNAME);
   // if expired then refresh storedtoken
-  if (expiry <= now){
+  if (expiry <= now) {
     storedToken = refreshAccessToken();
   }
   return storedToken;
