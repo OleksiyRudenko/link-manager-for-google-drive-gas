@@ -9,6 +9,8 @@ Refer to above for the initialization process.
 Note that `.js` files are uploaded as `.gs`. Therefore source files 
 below referred to as `.gs`.
  * `manifest/` - web app manifest for CWS; see also [`manifest.md`](manifest.md)
+   - `manifest.json` - web app manifest for CWS
+   - `*.png` - app icons
  * `src/` - web app code base
    - `app.gs` - app entry points
    - `auth.gs` - autorization, installation and action dispatching (open/create)
