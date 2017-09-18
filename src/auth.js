@@ -29,7 +29,7 @@ function auth(e) {
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
   // business operations of Drive API send state parameter, authentication returns code, initialisation has no parameters
-  if(e.parameters.state){
+  if (e.parameters.state) {
     //1 var state = JSON.parse(e.parameters.state);
     e.parameters.state = JSON.parse(e.parameters.state);
     if(e.parameters.state.action === 'create'){
@@ -42,7 +42,7 @@ function auth(e) {
      return fileAction(e.parameters);
     }
   } else {
-    if(e.parameters.code){//if we get "code" as a parameter in, then this is a callback from the install authorisation dance
+    if (e.parameters.code) {//if we get "code" as a parameter in, then this is a callback from the install authorisation dance
       // Logger.log("Installation response");
       getAndStoreAccessToken(e.parameters.code);  // installer
       // var htmlT = htmlInit('index','installed','Link Manager for Google Drive installed');
@@ -52,12 +52,12 @@ function auth(e) {
       // Logger.log("Installation request " + getURLForAuthorization());
       // var htmlT = htmlInit('index','install','Install Link Manager for Google Drive');
       // htmlT.vm.authUrl = getURLForAuthorization();
-      HTMLToOutput = "<!DOCTYPE html><html><head><base target=\"_top\"></head><body><h1>Install this App into your Google Drive!</h1><a href='"+getURLForAuthorization()+"'>click here to start</a></body></html>";
+      HTMLToOutput = '<!DOCTYPE html><html><head><base target="_top"></head><body><h1>Install this App into your Google Drive!</h1><a href="'+getURLForAuthorization()+'">click here to start</a></body></html>';
       // return htmlProduce(htmlT);
     }
   }
   if (HTMLToOutput.length == 0)
-    HTMLToOutput = "<!DOCTYPE html><html><head><base target=\"_top\"></head><body>Authorization cycle failed.</body></html>";
+    HTMLToOutput = '<!DOCTYPE html><html><head><base target="_top"></head><body>Authorization cycle failed.</body></html>';
   return HtmlService.createHtmlOutput(HTMLToOutput);
 }
 /* 
@@ -115,7 +115,7 @@ function refreshAccessToken() {
   var tokenResponse = JSON.parse(response);
   // store the token for later retrival - note refresh token does not expire
   UserProperties.setProperty(TOKENPROPERTYNAME, tokenResponse.access_token);
-  UserProperties.setProperty(EXPIRYPROPERTYNAME,tokenResponse.expires_in * 1000 + new Date().getTime());
+  UserProperties.setProperty(EXPIRYPROPERTYNAME, tokenResponse.expires_in * 1000 + new Date().getTime());
   return tokenResponse.access_token;
 }
 
