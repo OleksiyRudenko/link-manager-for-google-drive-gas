@@ -93,19 +93,95 @@ Google environment.
 
 ## Set up and Publication
 
+Import project files under Google Script Engine either via
+[Google Script IDE](https://script.google.com/) directly or
+via connecting Google Apps Script app on Google Drive and
+initializing the script at destination of your choice.
+
 ### Project Set Up
 
-**TBD**
+> **GS-IDE** - Google Script IDE.
+
+> **DEVCON** - [Google Developers Console](http://console.developers.google.com/)
+
+1. @ GS-IDE:
+ * Rename script project as appropriate and uniquely
+ * File > Manage versions:
+   - describe and Save new version
+   - Publish > Deploy as web app:
+     - Project version = select freshly saved
+     - Execute the app as = account of the user who visits the app
+     - Who has access to the app = "Anyone" or "Anyone, even anonymous"
+     - Deploy
+     - Take note of '**Current web app URL**' (EXEC) and '**Test web app**' (DEV)
+ * Resources > Advanced Google services : switch on services:
+   - Drive API v2
+   - URL Shortener API v1
+2. @ DEVCON:
+ * Select the project
+ * Libraries > enable APIs:
+   - Google Drive API
+   - URL Shortener API
+   - Google Apps Marketplace SDK
+ * Credentials:
+   - Create credentials:
+     - Google Drive Integration
+     - git-integration (optional to support)
+     - take notes of keys and secrets, download key-files when required
+   - OAuth consent screen: complete fields
+ * Dashboard:
+   - Google Apps Marketplace SDK > Configuration
+     - take note of Project number (App ID)
+     - complete required fields
+     - tick `Enable individual install' & 'Drive extension'
+     - use EXEC url for Setup URL field
+   - Google Drive API > Drive UI Integration
+     - complete required fields
+     - DO NOT tick 'Automatically show OAuth 2.0 consent screen...'
+     - DO NOT set Default MIME Types and Default File Extensions
+     - set Secondary MIME Types and Secondary File Extensions as per section below
+     - tick 'Importing', 'Mobile browser support', 'Team Drive support'
+3. @ GS-IDE:
+ * `auth.gs` - update App ID and credentials per notes taken above
+ * republish app (create new version, deploy as web app)
+
+#### Drive UI Integration
+
+**Secondary MIME Types**:
+ * `application/vnd.google-apps.document`
+ * `application/vnd.google-apps.spreadsheet`
+ * `application/vnd.google-apps.presentation`
+ * `application/vnd.google-apps.drawing`
+
+**Secondary File Extensions**:
+
+| xlsx | xlsxm | docx | pptx | ppsx | vsdx |
+|------|-------|------|------|------|------|
+| ods  | odt   | odp  | pdf  | psd  | md   |
+| exe  | msi   | zip  | 7z   | img  | gz   |
+| html | htm   | jpeg | jpg  | png  | gif  |
+| avi  | mp4   |
 
 ### Publication with CWS
 Go to [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/developer/dashboard).
+1. Complete your profile if not yet and pay required fee
+2. Locate your project and edit it:
+   * change assets in `cws/cws-promo/` and use those to complete the app profile
+   * `cws/manifest/manifest.json`:
+     - change app name, App ID, and other settings
+     - set version to `x.0.0.1` where `x` is current version of the app in CWS
+   * zip files in `cws/manifest/` and upload to app profile in CWS
+   * choose proper publishing option and Publish
 
-**TBD**
+The app will be available in an hour or so.
+
+Check [cws/README.md](cws/README.md) and how to
+[Publish in the Chrome Web Store](https://developer.chrome.com/webstore/publish)
+for details.
 
 ## Other
-More details on the application are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
-
-Please, refer to the above for more details.
+More details on the application you can find at
+[this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
 
 [The Script at Google](https://script.google.com/d/1VWya6MzrBeHa4Pb8kCoJk3N4sCScQu_tX6g9K1McA2skoRo9RaSaKhr1/edit?usp=drive_web)
 (restricted access).
