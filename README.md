@@ -1,11 +1,58 @@
 # Link Manager for Google Drive
 **Google Apps Standalone Script**
 
+A Google Drive application to manage file download and export links.
+Export options are supported for Google office suite documents.
+
+> Note: native Google office suite documents hereinafter referred 
+to as the **NGD**.
+
 Repo created using [node-google-apps-script](https://github.com/danthareja/node-google-apps-script).
 
 Refer to above for the initialization process.
 
-## Structure
+## The Problem
+
+When you share a link to a file located on Google Drive your vis-a-vis 
+may face:
+ * need to switch to a Google account in order to access NGD
+ * inability to access NGD when vis-a-vis has got no Google account
+ * take extra step to download other types of files as by default those
+   are opened in a preview mode
+ * inability to access any file if access permissions aren't
+   set properly
+
+You may also want to track access activities.
+
+## Solution
+
+This tool integrates with Google Drive and offers:
+ * convert-and-download direct links for native Google documents
+ * direct download links for other types of files
+
+The tool doesn't fetch files contents.
+
+### Features
+ * Convert and download link for NGD
+ * NGD gets converted to MSO document, pdf, or other types
+ * Google Sheets pdf export can be tuned
+ * Direct download link for other types
+ * goo.gl url shortener embedded
+ * access authorization shortcut
+
+## App Installation
+
+**TBD**
+
+## Further Contents for Developers
+ * [Project Structure](#project-structure)
+ * [Development](#development)
+ * [Set up and Publication](#set-up-and-publication)
+   - [Project Set Up](#project-set-up)
+   - [Publication with CWS](#publication-with-cws)
+ * [Other](#other)
+
+## Project Structure
 Note that `.js` files are uploaded as `.gs`. Therefore source files 
 below referred to as `.gs`.
  * `manifest/` - web app manifest for CWS; see also [`manifest.md`](manifest.md)
@@ -40,10 +87,20 @@ below referred to as `.gs`.
 Normal development cycle requires `gapps upload` to update the script in
 Google environment.
 
+## Set up and Publication
+
+### Project Set Up
+
+**TBD**
+
+### Publication with CWS
+
+**TBD**
+
 ## Other
 More details on the application are at [this closely related project](https://github.com/OleksiyRudenko/gd-linkman).
 
 Please, refer to the above for more details.
 
 [The Script at Google](https://script.google.com/d/1VWya6MzrBeHa4Pb8kCoJk3N4sCScQu_tX6g9K1McA2skoRo9RaSaKhr1/edit?usp=drive_web)
-(limited access).
+(restricted access).
