@@ -95,6 +95,7 @@ Google environment.
 **TBD**
 
 ### Publication with CWS
+Go to [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/developer/dashboard).
 
 **TBD**
 
