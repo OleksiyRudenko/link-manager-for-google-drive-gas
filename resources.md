@@ -2,7 +2,10 @@
 
 ## OAuth
  * https://github.com/googlesamples/apps-script-oauth2
- * [OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
+ * Goa OAuth lib by [Bruce Mcpherson](http://ramblings.mcpher.com/Home/excelquirks/goa)
+   - [OAuth2 for Apps Script in a few lines of code](http://ramblings.mcpher.com/Home/excelquirks/goa)
+   - [Accessing as the user running the script](http://ramblings.mcpher.com/Home/excelquirks/goa/userresources)
+   - [How to customize the consent screen](http://ramblings.mcpher.com/Home/excelquirks/goa/consentscreen)
 
 ## Building app for GDrive
  * http://davethinkingaloud.blogspot.co.nz/2013/08/using-google-drive-as-entry-point-for.html
