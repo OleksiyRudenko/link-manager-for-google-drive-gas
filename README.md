@@ -7,10 +7,6 @@ Export options are supported for Google office suite documents.
 > Note: native Google office suite documents hereinafter referred 
 to as the **NGD**.
 
-Repo created using [node-google-apps-script](https://github.com/danthareja/node-google-apps-script).
-
-Refer to above for the initialization process.
-
 ## The Problem
 
 When you share a link to a file located on Google Drive your vis-a-vis 
@@ -51,6 +47,11 @@ The tool doesn't fetch files contents.
    - [Project Set Up](#project-set-up)
    - [Publication with CWS](#publication-with-cws)
  * [Other](#other)
+
+
+Repo created using [node-google-apps-script](https://github.com/danthareja/node-google-apps-script).
+
+Refer to the above for the initialization process.
 
 ## Project Structure
 Note that `.js` files are uploaded as `.gs`. Therefore source files 
