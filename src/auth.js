@@ -25,6 +25,20 @@ var SCOPE         = 'https://www.googleapis.com/auth/drive.install https://www.g
 * if state not present then it is an installation and authorisation call
 */
 
+cGoa.GoaApp.setPackage(PropertiesService.getScriptProperties(), {
+  clientId : CLIENT_ID,
+  clientSecret : CLIENT_SECRET,
+  scopes : cGoa.GoaApp.scopesGoogleExpand([
+    'drive.install',
+    'userinfo.email',
+    'userinfo.profile',
+    'drive',
+    'urlshortener'
+  ]),
+  service: 'google',
+  packageName: 'LinkManager4GDrive'
+});
+
 function auth(e) {
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
