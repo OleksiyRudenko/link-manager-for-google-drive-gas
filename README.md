@@ -117,6 +117,10 @@ initializing the script at destination of your choice.
  * Resources > Advanced Google services : switch on services:
    - Drive API v2
    - URL Shortener API v1
+ * Resources > Libraries:
+   - Add library [cGoa](http://ramblings.mcpher.com/Home/excelquirks/goa/userresources)
+     = `MZx5DzNPsYjVyZaR67xXJQai_d-phDA33`
+   - Set library version = 24
 2. @ DEVCON:
  * Select the project
  * Libraries > enable APIs:
