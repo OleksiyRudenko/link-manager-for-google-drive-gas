@@ -40,6 +40,7 @@ cGoa.GoaApp.setPackage(PropertiesService.getScriptProperties(), {
 });
 
 function auth(e) {
+  return doGetDataStoreUser(e);
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
   // business operations of Drive API send state parameter, authentication returns code, initialisation has no parameters
