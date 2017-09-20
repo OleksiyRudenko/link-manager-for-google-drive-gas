@@ -13,7 +13,8 @@
  *      https://chrome.google.com/webstore/developer/dashboard
  *
  * Regular call parameters:
- * APP_URL?state={"ids":["0By_1gNcMlZs6TWE5aHItZnBYOTg"],"action":"open","userId":"{userId}"}
+ * APP_URL?state={"ids":["0By_1gNcMlZs6TWE5aHItZnBYOTg"],"action":"open","userId":"{userId}","debug":"true"}
+ * debug is optional
 */
 
 function doGet(e) {
