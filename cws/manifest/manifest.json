@@ -3,7 +3,7 @@
   "name":"Link Manager for Google Drive (gas-sa)",
   "short_name": "LinkMan",
   "description":"Share export-and-download links for native Google documents and direct download links for other types.",
-  "version": "2.0.0.1",
+  "version": "2.0.0.2",
   "manifest_version": 2,
   "api_console_project_id": "940998321600",
   "container": ["DOMAIN_INSTALLABLE", "GOOGLE_DRIVE"],
