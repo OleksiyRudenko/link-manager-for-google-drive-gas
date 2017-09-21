@@ -25,6 +25,7 @@ var SCOPE         = 'https://www.googleapis.com/auth/drive.install https://www.g
 * if state not present then it is an installation and authorisation call
 */
 
+var GOA_PACKAGE_NAME = 'LinkManager4GDrive';
 cGoa.GoaApp.setPackage(PropertiesService.getScriptProperties(), {
   clientId : CLIENT_ID,
   clientSecret : CLIENT_SECRET,
@@ -36,13 +37,37 @@ cGoa.GoaApp.setPackage(PropertiesService.getScriptProperties(), {
     'urlshortener'
   ]),
   service: 'google',
-  packageName: 'LinkManager4GDrive'
+  packageName: GOA_PACKAGE_NAME
 });
 
 var RUN_TO_GET_REDIRECT_URL = true; // cGoa requires initial run to produce callback redirect url for OAuth settings
 
 function auth(e) {
   if (RUN_TO_GET_REDIRECT_URL) return doGetDataStoreUser(e);
+
+  // ===== Authorization routines ===============
+  // this is pattern for a WebApp.
+  // passing the doGet parameters (or anything else)
+  // will ensure they are preservered during the multiple oauth2 processes
+  var packageName = GOA_PACKAGE_NAME,
+    userPropertyStore = PropertiesService.getUserProperties(),
+    scriptPropertyStore = PropertiesService.getScriptProperties();
+
+  // this starts with a package copy for a specific user if its needed
+  cGoa.GoaApp.userClone(packageName, scriptPropertyStore , userPropertyStore);
+
+  // create a user specific package.
+  var goa = cGoa.GoaApp.createGoa (packageName,userPropertyStore).execute(e);
+
+  // it's possible that we need consent - this will cause a consent dialog
+  if (goa.needsConsent()) {
+    return goa.getConsent();
+  }
+
+  // if we get here its time for your webapp to run and we should have a token, or thrown an error somewhere
+  if (!goa.hasToken()) throw 'something went wrong with goa - did you check if consent was needed?';
+
+
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
   // business operations of Drive API send state parameter, authentication returns code, initialisation has no parameters
