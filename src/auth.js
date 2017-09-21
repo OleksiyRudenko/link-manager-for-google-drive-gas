@@ -88,3 +88,38 @@ function auth(e) {
     HTMLToOutput = '<!DOCTYPE html><html><head><base target="_top"></head><body>Authorization cycle failed.</body></html>';
   return HtmlService.createHtmlOutput(HTMLToOutput);
 }
+
+function appUser(params) { // was dataStoreUser()
+  // pick up the token refreshing if necessary
+  var goa = cGoa.GoaApp.createGoa('DriverDatastore_example', PropertiesService.getUserProperties()).execute(params);
+  if (!goa.hasToken()) {
+    throw 'for a non webapp version - first publish once off to provoke a dialog - token will be refreshed automatically thereafter';
+  }
+  // do a test - passing the token and any parameters that arrived to this function
+  Logger.log (testDataStore (goa.getToken(), goa.getParams() ));
+}
+
+/**
+ * this is your main processing - will be called with your access token
+ * @param {string} accessToken - the accessToken
+ * @param {*} params any params
+ */
+function testApp (accessToken,params) { // was testDataStore()
+  var options = {
+    method: "POST",
+    contentType : "application/json" ,
+    muteHttpExceptions : true,
+    headers: {
+      "authorization": "Bearer " + accessToken,
+    },
+    payload:JSON.stringify({
+      "query": {
+        "kinds": [{"name":"polymerdbab"}]
+      }
+    })
+  };
+
+  return UrlFetchApp.fetch(
+    "https://www.googleapis.com/datastore/v1beta2/datasets/xliberationdatastore/runQuery", options);
+
+}
