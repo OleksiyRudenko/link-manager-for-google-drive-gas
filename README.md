@@ -129,6 +129,10 @@ initializing the script at destination of your choice.
      - git-integration (optional to support)
      - take notes of keys and secrets, download key-files when required
    - OAuth consent screen: complete fields
+   - Google Drive integration credentials:
+     - complete the form
+     - add Authorised redirect URI using EXEC url with replacement 
+       `exec` => `usercallback`
  * Dashboard:
    - Google Apps Marketplace SDK > Configuration
      - take note of Project number (App ID)
