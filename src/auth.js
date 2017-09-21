@@ -39,7 +39,10 @@ cGoa.GoaApp.setPackage(PropertiesService.getScriptProperties(), {
   packageName: 'LinkManager4GDrive'
 });
 
+var RUN_TO_GET_REDIRECT_URL = true; // cGoa requires initial run to produce callback redirect url for OAuth settings
+
 function auth(e) {
+  if (RUN_TO_GET_REDIRECT_URL) return doGetDataStoreUser(e);
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
   // business operations of Drive API send state parameter, authentication returns code, initialisation has no parameters
