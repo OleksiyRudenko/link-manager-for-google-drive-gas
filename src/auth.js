@@ -67,6 +67,11 @@ function auth(e) {
   // if we get here its time for your webapp to run and we should have a token, or thrown an error somewhere
   if (!goa.hasToken()) throw 'something went wrong with goa - did you check if consent was needed?';
 
+  // ========== Main routine ===========
+  // testDataStore (goa.getToken(), goa.getParams() );  // as per tutorial, whenever user token required
+
+  // retrieve normal parameters
+  e = goa.getParams();
 
   // Logger.log("Entering auth with e=" + JSON.stringify(e,null,4));
   var HTMLToOutput = '';
