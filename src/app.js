@@ -9,6 +9,9 @@
  * prod: https://script.google.com/macros/s/AKfycbzkhmrAd5XDWPEjMg2LWZjwZzB_QzU77RYCBh5fk9OXsoqO7jyY/exec
  *       https://script.google.com/macros/s/AKfycbzkhmrAd5XDWPEjMg2LWZjwZzB_QzU77RYCBh5fk9OXsoqO7jyY/exec?state={"ids":["0By_1gNcMlZs6TWE5aHItZnBYOTg"],"action":"open","userId":"{userId}","debug":true}
  *
+ * auth callback URI
+ *       https://script.google.com/macros/s/AKfycbzkhmrAd5XDWPEjMg2LWZjwZzB_QzU77RYCBh5fk9OXsoqO7jyY/usercallback
+ *
  * CWS: https://chrome.google.com/webstore/detail/gd-linkman-gas-sa/nakhlchefdilapgmhehbpmkgchadojjl
  *      https://chrome.google.com/webstore/developer/dashboard
  *
