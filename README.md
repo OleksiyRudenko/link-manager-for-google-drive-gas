@@ -191,3 +191,6 @@ More details on the application you can find at
 
 [The Script at Google](https://script.google.com/d/1VWya6MzrBeHa4Pb8kCoJk3N4sCScQu_tX6g9K1McA2skoRo9RaSaKhr1/edit?usp=drive_web)
 (restricted access).
+
+[App CWS Stats](https://chrome.google.com/webstore/developer/stats/nakhlchefdilapgmhehbpmkgchadojjl)
+(restricted access).
