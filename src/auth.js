@@ -6,7 +6,7 @@
 // Globals used in api constructs
 var AUTHORIZE_URL       = 'https://accounts.google.com/o/oauth2/auth';
 var TOKEN_URL           = 'https://accounts.google.com/o/oauth2/token';
-var REDIRECT_URL        = ScriptApp.getService().getUrl();  // url of *this* script exec
+var REDIRECT_URL        = ScriptApp.getService().getUrl();  // url of *this* script exec -- 'https://script.google.com/macros/d/1VWya6MzrBeHa4Pb8kCoJk3N4sCScQu_tX6g9K1McA2skoRo9RaSaKhr1/oauthcallback'
 var TOKENPROPERTYNAME   = 'GOOGLE_OAUTH_TOKEN'; // access token valid until time expire or revoke by user
 var REFRESHPROPERTYNAME = 'GOOGLE_OAUTH_REFRESH'; //oauth2 refresh token valid until revoked by user
 var EXPIRYPROPERTYNAME  = 'GOOGLE_OAUTH_EXPIRY' ; // expiry of oauth2 token time to do refresh!
@@ -16,7 +16,7 @@ var CLIENT_SECRET = 'u3z9_oX2CYp2PlmnPg5Gf9YM';
 // 
 var DRIVE_API_URL = 'https://www.googleapis.com/drive/v2';
 // maintain scope in step with changing application requirements
-var SCOPE         = 'https://www.googleapis.com/auth/drive.install https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/urlshortener';
+var SCOPE         = 'https://www.googleapis.com/auth/drive.install https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/urlshortener';
 /* Main entry point
 * functions depend on code and state parameters
 * if state present ... app is installed
