@@ -3,7 +3,7 @@
   "name":"Link Manager for Google Drive (gas-sa)",
   "short_name": "LinkMan",
   "description":"Share export-and-download links for native Google documents and direct download links for other types.",
-  "version": "2.0.0.3",
+  "version": "2.0.0.4",
   "manifest_version": 2,
   "api_console_project_id": "940998321600",
   "container": ["DOMAIN_INSTALLABLE", "GOOGLE_DRIVE"],
@@ -13,6 +13,20 @@
     "launch":
     {"web_url":"https://script.google.com/macros/s/AKfycbzkhmrAd5XDWPEjMg2LWZjwZzB_QzU77RYCBh5fk9OXsoqO7jyY/exec"}
   },
+  "oauth2": {
+    "client_id": "940998321600-j97orlmmmrc59d1p1n2mni1dqtji7t01.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.install",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/urlshortener"
+    ]
+  },
+  "permissions": [
+    "identity",
+    "https://ssl.gstatic.com/",
+    "https://www.googleapis.com/",
+    "https://accounts.google.com/"
+  ],
   "icons": {
     "128": "ico-gd-linkman-cws-112in128x.png",
     "16" : "ico-cws-gapi-16x.png"
