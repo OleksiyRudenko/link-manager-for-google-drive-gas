@@ -10,4 +10,7 @@ Project ID options:
  * Project number: `940998321600`
  * Project ID: `project-id-1276837308347247703`
 
+Chrome Web Store Listing notes:
+ * https://developers.google.com/drive/v3/web/listing
+
 Sources are in [gd-linkman project on github](https://github.com/OleksiyRudenko/gd-linkman/tree/master/dist-env).
