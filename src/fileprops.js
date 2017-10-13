@@ -7,6 +7,17 @@ function getFileMetaDataById(fileId,fileMDlist) {
   for (var i=0; i<fileMDlist.length; i++) {
     fileMetaData[fileMDlist[i]] = fileDriveMetaData[fileMDlist[i]];
   }
+  // get permissions
+  var anyoneWithLink = null;
+  try {
+    anyoneWithLink = Drive.Permissions.get(fileId,'anyoneWithLink');
+  } catch (e) {
+    anyoneWithLink = null;
+  }
+  fileMetaData['permissions'] = {
+    'all'            : Drive.Permissions.list(fileId),
+    'anyoneWithLink' : anyoneWithLink,
+  };
   // add LMtype
   fileMetaData.LMtype = getFileType(fileDriveMetaData.mimeType);
   // add shortUrlId related properties
