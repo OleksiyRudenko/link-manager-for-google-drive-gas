@@ -63,6 +63,8 @@ function fileAction(params) {
       bg   : 'info', // bootstrap primary, secondary, success, danger, warning, info, light, dark, white
     },
     file   : {
+      anyoneWithLink : fileMD.permissions.anyoneWithLink,
+      LMtype : fileMD.permissions.LMtype,
       urls : getFileUrls(fileMD), // [ { format, long, short, shortinfo, clicks },.. ] - short is either value or null to add 'Shorten' button
     },
   };
