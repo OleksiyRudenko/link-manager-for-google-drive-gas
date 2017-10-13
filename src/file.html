@@ -4,6 +4,19 @@
 <? } ?>
 <form action="<?= vm.submitAction ?>" method="post">
 <?
+ if (vm.file.anyoneWithLink === null) {
+?>
+    <div class="row py-1">
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> <p>This file will not be <?= (vm.fileLMtype==='bin')?'downloadable':'exportable' ?> by anyone who is not granted at least viewing access.</p>
+            <p>Should you want unlisted users being able to <?= (vm.fileLMtype==='bin')?'download':'export' ?> file using the link, consider granting View permissions to anyone with the link
+                via file contextual menu (Share) on Google Drive.</p>
+        </div>
+    </div>
+<?
+ }
+?>
+<?
  for (var i=0; i<vm.file.urls.length; i++)
  {
 ?>
