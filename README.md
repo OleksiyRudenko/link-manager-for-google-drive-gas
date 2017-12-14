@@ -1,5 +1,3 @@
-# NOT OF PRODUCTION QUALITY!
-
 # Link Manager for Google Drive
 **Google Apps Standalone Script**
 
